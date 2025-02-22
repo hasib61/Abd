@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aroe Server</title>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background-color: #1e1e1e; color: #fff; overflow: hidden; }
+    .iphone-frame { position: relative; width: 375px; height: 667px; margin: 50px auto; border-radius: 36px; overflow: hidden; background-color: #000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); }
+    .notch { width: 80px; height: 20px; background-color: #111; border-radius: 10px; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); }
+    .mobile-frame { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+    .container { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; }
+    .header { text-align: center; margin-bottom: 20px; }
+    .header h1 { font-size: 24px; margin-bottom: 10px; color: #ff8c00; }
+    .header h3 { font-size: 18px; color: #fff; }
+    .input-section { width: 100%; display: flex; flex-direction: column; align-items: center; }
+    input, button { padding: 10px; margin: 10px; border: none; border-radius: 8px; font-size: 16px; }
+    input { width: 80%; margin-bottom: 10px; text-align: center; color: #fff; background-color: #333; }
+    button { width: 80%; background-color: #ff8c00; color: #fff; cursor: pointer; transition: background-color 0.3s ease; }
+    button:hover { background-color: #f59c42; }
+    button:disabled { background-color: #444; cursor: not-allowed; }
+    #telegramButton { background-color: #0088cc; }
+    #telegramButton:hover { background-color: #00aaff; }
+    #resultOutput { font-size: 18px; text-align: center; opacity: 0; transform: scale(0.5); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
+    #resultOutput.show-result { opacity: 1; transform: scale(1); }
+    #particles-js { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="iphone-frame">
+    <div class="notch"></div>
+    <div class="mobile-frame">
+      <div class="container">
+        <div class="header">
+          <h1>AROE TEAM HACK</h1>
+          <h3>ENJOY YOUR DAY</h3>
+        </div>
+        <div class="input-section">
+          <input type="text" id="periodInput" placeholder="Enter 5 Digit Period" maxlength="5">
+          <input type="text" id="resultOutput" placeholder="RESULT SHOW" readonly>
+          <button id="resultButton">RESULT</button>
+          <br><br>
+          <a href="https://t.me/+RFF5wlUexkgwNzVl" target="_blank">
+            <button id="telegramButton">TELEGRAM</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('resultButton').addEventListener('click', function() {
+      var period = document.getElementById('periodInput').value;
+      var resultOutput = document.getElementById('resultOutput');
+      var resultButton = document.getElementById('resultButton');
+
+      if (period.length === 5 && !isNaN(period)) {
+        var result = (Math.random() < 0.5) ? "Big" : "Small"; // র‍্যান্ডম ভাবে নির্ধারণ
+
+        resultOutput.classList.remove("show-result"); // Remove previous animation
+        setTimeout(() => {
+          resultOutput.value = "Result: " + result;
+          resultOutput.classList.add("show-result"); // Add new animation
+        }, 100);
+
+        resultButton.disabled = true;
+        setTimeout(() => {
+          resultButton.disabled = false;
+        }, 5000);
+      } else {
+        resultOutput.classList.remove("show-result"); // Remove animation
+        setTimeout(() => {
+          resultOutput.value = "Please enter a valid 5-digit number!";
+          resultOutput.classList.add("show-result"); // Add new animation
+        }, 100);
+      }
+    });
+
+    // Particles.js Initialization
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#ff8c00" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#ff8c00", opacity: 0.4, width: 1 },
+        move: { enable: true, speed: 2 }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+</body>
+</html>
